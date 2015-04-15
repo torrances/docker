@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<schema name="books" version="1.5">
+
+<fields>
+   <field name="_version_" type="long" indexed="true" stored="true"/>
+   <field name="_root_" type="string" indexed="true" stored="false"/>
+   <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" /> 
+   <field name="speaker" type="text_general" indexed="true" stored="true" omitNorms="true"/>
+   <field name="title" type="text_general" indexed="true" stored="true" omitNorms="true"/>
+   <field name="page" type="text_general" indexed="true" stored="true" omitNorms="true"/>
+   <field name="url" type="text_general" indexed="true" stored="true" omitNorms="true"/>
+   <field name="filename" type="text_general" indexed="true" stored="true" omitNorms="true"/>
+   <field name="line" type="text_general" indexed="true" stored="true" omitNorms="true"/>
+ </fields>
+
+ <uniqueKey>id</uniqueKey>
+ 
+  <types>
+
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
+    <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
+    <fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="float" class="solr.TrieFloatField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="double" class="solr.TrieDoubleField" precisionStep="0" positionIncrementGap="0"/>
+
+    <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+        <filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+    </fieldType>
+    
+  </types>
+
+</schema>
