@@ -1,0 +1,11 @@
+solr:
+  build: .
+  ports:
+    - "8983/8983"
+  volumes:
+    - /home/craig/solr_data/:/opt/solr/server/solr/books 
+
+
+ # I get an error:
+ # Cannot start container b9fab5c7e7749a23f5675315a57b59954ff3a23ae99bac3e858d2003b8d28e1e: unsupported address type 8983
+

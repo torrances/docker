@@ -12,7 +12,7 @@
    <field name="page" type="text_general" indexed="true" stored="true" omitNorms="true"/>
    <field name="url" type="text_general" indexed="true" stored="true" omitNorms="true"/>
    <field name="filename" type="text_general" indexed="true" stored="true" omitNorms="true"/>
-   <field name="line" type="text_general" indexed="true" stored="true" omitNorms="true"/>
+   <field name="text" type="text_general" indexed="true" stored="true" omitNorms="true"/>
  </fields>
 
  <uniqueKey>id</uniqueKey>
@@ -25,6 +25,7 @@
     <fieldType name="float" class="solr.TrieFloatField" precisionStep="0" positionIncrementGap="0"/>
     <fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
     <fieldType name="double" class="solr.TrieDoubleField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="text" class="solr.TextField" positionIncrementGap="100" />    
 
     <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100">
       <analyzer type="index">
