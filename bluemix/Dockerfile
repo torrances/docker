@@ -6,20 +6,21 @@ ENV DOCKER_TLS_VERIFY 1
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
   apt-get \
-    autoremove -y
+    update && \
   apt-get \
-    update
-
-# install python pip
-RUN \
-  apt-get install -y \
+    autoremove -y && \
+  apt-get \
+    install -y \
+    curl \
+    wget \    
     build-essential \
     python-dev \
-    python-pip
+    python-pip 
 
 # install python setup-utils
 RUN \
-  wget https://bootstrap.pypa.io/ez_setup.py -O - | python
+  wget \
+    https://bootstrap.pypa.io/ez_setup.py -O - | python
 
 # install docker
 RUN \
@@ -37,26 +38,31 @@ RUN \
 RUN \
   wget \
     https://github.com/docker/compose/releases/download/1.1.0/docker-compose-$(uname -s)-$(uname -m) && \
-  mv docker-compose-$(uname -s)-$(uname -m) docker-compose && \
+  mv \
+    docker-compose-$(uname -s)-$(uname -m) docker-compose && \
   chmod 777 \
     docker-compose && \
-  mv docker-compose /usr/local/bin/
+  mv \
+    docker-compose /usr/local/bin/
 
 # install ice
 RUN \
-  apt-get install -y \
-    curl && \
   curl -O \
     https://static-ice.ng.bluemix.net/icecli-2.0.zip && \
   pip install \
     icecli-2.0.zip
 
 RUN \
-  wget https://cli.run.pivotal.io/stable?release=debian64&version=6.11.0&source=github-rel && \
-  mv stable\?release\=debian64 cf-cli_amd64.deb && \
-  dpkg -i cf-cli_amd64.deb && \
-  apt-get install -f -y && \
-  rm cf-cli_amd64.deb
+  wget \
+    https://cli.run.pivotal.io/stable?release=debian64&version=6.11.0&source=github-rel && \
+  mv \
+    stable\?release\=debian64 cf-cli_amd64.deb && \
+  dpkg -i \
+    cf-cli_amd64.deb && \
+  apt-get \
+    install -f -y && \
+  rm \
+    cf-cli_amd64.deb
 
 RUN \
   usermod -a -G docker $(whoami)
