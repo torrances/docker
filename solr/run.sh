@@ -12,13 +12,14 @@ else
 	echo "data volume already exists"
 fi
 
+sudo docker-compose up
 # build the container
-sudo docker build \
-  -t craig/solr .
+# sudo docker build \
+#  -t craig/solr .
 
 # launch the container
-sudo docker run \
-  -p 8983:8983 \
-  -v /home/craig/solr_data/:/opt/solr/server/solr/books \
-  --name solr \
-  craig/solr
+# sudo docker run \
+# -p 8983:8983 \
+# -v /home/craig/solr_data/:/opt/solr/server/solr/books \
+# --name solr \
+# craig/solr
