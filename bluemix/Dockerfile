@@ -1,4 +1,4 @@
-FROM dind
+FROM craig/docker
 
 MAINTAINER  Craig Trim "craigtrim@gmail.com"
 
@@ -24,14 +24,7 @@ RUN \
   dpkg -i cf-cli_amd64.deb && \
   apt-get install -f -y
   #rm cf-cli_amd64.deb
-
-# install docker-compose
-RUN \
-  wget https://github.com/docker/compose/releases/download/1.1.0/docker-compose-$(uname -s)-$(uname -m) && \
-  mv docker-compose-$(uname -s)-$(uname -m) docker-compose && \
-  chmod 777 docker-compose && \
-  mv docker-compose /usr/local/bin/
-
+  
 # misc commands
 RUN \
   usermod -a -G docker $(whoami) && \

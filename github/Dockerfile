@@ -17,17 +17,6 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
   apt-get update -qq && apt-get autoremove -y && apt-get install -qqy \
     wget 
 
-RUN \
-  wget http://mirrors.xmission.com/eclipse/technology/epp/downloads/release/luna/SR2/eclipse-java-luna-SR2-linux-gtk-x86_64.tar.gz && \
-  mkdir –p /opt/eclipse/luna/ && \
-  tar -zxvf eclipse-java-luna-SR2-linux-gtk-x86_64.tar.gz && \
-  sudo mv eclipse* /opt
-
-ENV ECLIPSE_HOME /opt/eclipse/luna
-ENV PATH /opt/eclipse/luna/bin:$PATH
-
-
-
 # bom
 RUN \
   mkdir -p $WSBOM && \
