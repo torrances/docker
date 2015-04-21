@@ -1,0 +1,3 @@
+# Bluemix Docker
+
+Extends https://github.com/jpetazzo/dind for docker-in-docker
