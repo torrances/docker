@@ -1,0 +1,10 @@
+mongo:
+  build: .
+  ports:
+    - "27017:27017"
+  hostname:
+    mongo
+  volumes:
+    /home/craig/dat:/data/db
+  privileged:
+    true
