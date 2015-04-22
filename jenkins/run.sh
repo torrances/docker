@@ -12,12 +12,4 @@
 ##
 ################################################################
 mkdir ~/jpr
-
-sudo docker build \
-  --no-cache -t \
-  craig/jenkins .
-
-sudo docker run \
-  -p 8040:8080 \
-  -v ~/jpr:/var/jenkins_home \
-  craig/jenkins
+sudo docker-compose up

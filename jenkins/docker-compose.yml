@@ -1,0 +1,10 @@
+jenkins:
+  build: .
+  ports:
+    - "8040:8080"
+  volumes:
+    - ~/jpr:/var/jenkins_home
+  hostname:
+    jenkins
+  privileged:
+    false
